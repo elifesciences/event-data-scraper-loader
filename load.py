@@ -8,9 +8,8 @@ def nsdict(d, k):
         return
     subdict = {}
     for subkey, subval in d[k].items():
-        new_key = k + "__" + subkey # "key.subkey"
+        new_key = k + "__" + subkey
         subdict[new_key] = subval
-        #del subdict[subkey]
     d.update(subdict)
     del d[k]
 
