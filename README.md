@@ -6,4 +6,4 @@ Loads the scraped data into a sqlite database using `load.py`
 
 ## Licence
 
-The `builder` project is [MIT licenced](LICENCE.txt).
+This project is [MIT licenced](LICENCE.txt).
