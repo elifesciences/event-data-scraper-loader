@@ -31,18 +31,12 @@ def create_rows(fname):
     data = json.load(open(fname, 'r'))['message']['events']
     return map(mkrow, data)
 
-#print(json.dumps(create_rows('event-data-1.json'), indent=4))
-
-
-
 def insert_row(cursor, row):
     row = OrderedDict(row)
     sql = "INSERT INTO event_data (%s) VALUES (%s);"
     keys = ", ".join(row.keys())
     vals = ", ".join(["?"] * len(row))
     sql = sql % (keys, vals)
-    print(sql)
-    print(row.values())
     return cursor.execute(sql, list(row.values()))
 
 def insert_many_rows(conn, cursor, rows):
@@ -54,7 +48,6 @@ key_type_map = {}
 key_types = ", ".join([key + " " + key_type_map.get(key, 'text') for key in keys])
 
 sql_create_table = """CREATE TABLE event_data (%s);""" % key_types
-print(sql_create_table)
 
 conn = sqlite3.connect('db.sqlite3')
 cursor = conn.cursor()
